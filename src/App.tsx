@@ -1,4 +1,4 @@
-import { AbsoluteButton, Button, Container, Description, DiscountPrice, ImageContainer, Informations, InternalContainer, OriginalPrice, OutterContainer, TextBlack, TextGray } from "./styles";
+import { AbsoluteButton, Button, Container, Description, DiscountPrice, ImageContainer, Informations, InternalContainer, OriginalPrice, OutterContainer, Step, TextBlack, TextGray } from "./styles";
 import { AiOutlineHeart, AiOutlineCheck } from 'react-icons/ai';
 import computer from '../src/assets/computer.png';
 import { GlobalStyle } from "./styles/global";
@@ -7,6 +7,8 @@ import api from "./services/server";
 
 export function App() {
   const [addedProduct, setAddedProduct] = useState(false);
+  const [maxSteps, setMaxSteps] = useState(0);
+  const [steps, setSteps] = useState(0);
   const [wishlist, setWishlist] = useState(false);
   const [products, setProducts] = useState<IProducts[]>();
 
@@ -18,9 +20,25 @@ export function App() {
     setWishlist(!wishlist);
   }
 
+  const toggleSteps = () => {
+    setSteps((prevState) => prevState + 1);
+  }
+
+  useEffect(() => {
+    if(products) {
+      setMaxSteps(products.length);
+    }
+  }, [products])
+
   useEffect(() => {
     getProducts();
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    if(maxSteps === steps) {
+      setSteps(0);
+    }
+  }, [steps])
 
   async function getProducts() {
     try {
@@ -41,7 +59,8 @@ export function App() {
       <OutterContainer>
         <Container>
             {
-              products && products.map((product) => {
+              products && products.map((product, index) => {
+                if (index === steps)
                 return (
                   <InternalContainer>
                     <ImageContainer>
@@ -97,6 +116,15 @@ export function App() {
             }
         </Container>
       </OutterContainer>
+      <Step>
+        <Button
+          onClick={() => {
+            toggleSteps();
+          }}
+        >
+          PRÓXIMO PRODUTO
+        </Button>
+      </Step>
       <GlobalStyle />
     </div>
   );

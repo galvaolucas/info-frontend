@@ -11,15 +11,24 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--red-500);
+    background: var(--white);
 `;
 
 export const OutterContainer = styled.div`
     width: 100vw;
-    height: 100vh;
+    height: 600px;
     display: flex;
     justify-content: center;
     margin-top: 30px;
+`;
+
+export const Step = styled.div`
+    width: 100vw;
+    height: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const InternalContainer = styled.div`
