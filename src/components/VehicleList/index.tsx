@@ -1,8 +1,13 @@
 import { AbsoluteButton, Container, Infos, TitleText, Tr } from "./styles";
 import { RiAddFill } from 'react-icons/ri';
 import { VehicleItem } from "../VehicleItem";
+import { IVehicle } from "./dtos";
 
-export function VehicleList () {
+interface IVehicleListProps {
+    vehicles: IVehicle[];
+}
+
+export function VehicleList ({vehicles}: IVehicleListProps) {
     return (
         <Container>
             <Infos>
@@ -30,9 +35,13 @@ export function VehicleList () {
                     OPÇÕES
                 </TitleText>
             </Infos>
-            <VehicleItem
-
-            />
+            { vehicles.map((vehicle) => {
+                return (
+                    <VehicleItem
+                        vehicle={vehicle}
+                    /> 
+                )})
+            }
         </Container>
     )
 }

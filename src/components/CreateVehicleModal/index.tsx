@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Modal } from "../Modal";
 import { Input } from "../Input";
 import { IFormData, ModalProps } from "./dtos";
-import { FormContainer, InputContainer } from "./styles";
+import { AbsoluteButton, FormContainer, InputContainer } from "./styles";
+import api from "../../services/server";
 
 export function CreateVehicleModal ({open, closeModal}: ModalProps) {
     const [data, setData] = useState<IFormData>({
@@ -14,7 +15,26 @@ export function CreateVehicleModal ({open, closeModal}: ModalProps) {
       year: 0,
     });
 
-    
+    console.log(data);
+
+    async function createVehicle () {
+
+      const body = {
+        plate: data.plate,
+        chassis: data.chassis,
+        renavam: data.renavam,
+        model: data.model,
+        brand: data.brand,
+        year: data.year,
+      }
+
+      try {
+        const response = await api.post('/cars', body);
+        console.log(response);
+      } catch (err) {
+        console.log(err);
+      }
+    }
 
     return (
         <Modal 
@@ -39,9 +59,9 @@ export function CreateVehicleModal ({open, closeModal}: ModalProps) {
 
             <InputContainer>
               <Input 
-                label='Marca'
+                label='Marca/Modelo'
                 inputName="model"
-                value={data.plate || ''}
+                value={data.model || ''}
                 handleChange={(event) =>
                   setData((prevState) => ({
                     ...prevState,
@@ -55,7 +75,7 @@ export function CreateVehicleModal ({open, closeModal}: ModalProps) {
               <Input 
                 label='Ano'
                 inputName="year"
-                value={data.plate || ''}
+                value={data.year || ''}
                 handleChange={(event) =>
                   setData((prevState) => ({
                     ...prevState,
@@ -83,7 +103,7 @@ export function CreateVehicleModal ({open, closeModal}: ModalProps) {
               <Input 
                 label='Renavam'
                 inputName="renavam"
-                value={data.plate || ''}
+                value={data.renavam || ''}
                 handleChange={(event) =>
                   setData((prevState) => ({
                     ...prevState,
@@ -97,7 +117,7 @@ export function CreateVehicleModal ({open, closeModal}: ModalProps) {
               <Input 
                 label='Nº Chassi'
                 inputName="chassis"
-                value={data.plate || ''}
+                value={data.chassis || ''}
                 handleChange={(event) =>
                   setData((prevState) => ({
                     ...prevState,
@@ -107,6 +127,14 @@ export function CreateVehicleModal ({open, closeModal}: ModalProps) {
               />
             </InputContainer>
             
+            <AbsoluteButton
+              onClick={async () => {
+                await createVehicle();
+              }}
+            >
+              Cadastrar
+            </AbsoluteButton>
+
           </FormContainer>
         </Modal >
     )

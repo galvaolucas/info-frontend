@@ -1,32 +1,37 @@
 import { AbsoluteButton, Container, GeneralContainer, MainText, ModelContainer, SecondaryText } from "./styles";
 import { AiFillCar } from 'react-icons/ai';
+import { IVehicle } from "../VehicleList/dtos";
 
-export function VehicleItem () {
+interface IVehicleItemProps {
+    vehicle: IVehicle;
+}
+
+export function VehicleItem ({vehicle}: IVehicleItemProps) {
     return (
         <Container>
             <AiFillCar size={20}/>
                 <ModelContainer>
                     <MainText>
-                        FOX
+                    {vehicle.brand}
                     </MainText>
                     <SecondaryText>
-                        2011
+                    {vehicle.year}
                     </SecondaryText>
                 </ModelContainer>
                 <GeneralContainer>
-                    VOLKSWAGEN
+                {vehicle.model}
                 </GeneralContainer>
                 <GeneralContainer>
-                    KGH7E16
+                {vehicle.plate}
                 </GeneralContainer>
                 <GeneralContainer>
-                    09093182884172737
+                {vehicle.chassis}
                 </GeneralContainer>
                 <GeneralContainer>
-                    00225184567
+                {vehicle.renavam}
                 </GeneralContainer>
                 <GeneralContainer>
-                    VOLKSWAGEN
+                    
                 </GeneralContainer>
         </Container>
     )
