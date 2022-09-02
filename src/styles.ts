@@ -6,12 +6,14 @@ interface ButtonProps {
 }
 
 export const Container = styled.div`
-    width: 304px;
-    height: 568px;
+    width: 100%;
+    height: 100%;
+
+    padding: 40px;
+
     display: flex;
     align-items: center;
-    justify-content: center;
-    background: var(--white);
+    flex-direction: column;
 `;
 
 export const OutterContainer = styled.div`

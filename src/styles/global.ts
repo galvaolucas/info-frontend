@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
     :root {
         --white: #ffffff;
-        --green-400: #40B25C;
+        --info: #E1BB4B;
         --gray-900: #1C1C1C;
         --gray-600: #999A9B;
         --red-500: #F3151B;
@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
         --pink-100: #FFCAE0;
         --red-600: #E20F15;
         --gray-700: #737375;
-        --background: #DADCDE;
+        --background: var(--gray-200);
     }
 
     * {
@@ -30,6 +30,7 @@ export const GlobalStyle = createGlobalStyle`
     body, input, textarea, button {
         font-family: 'Inter', sans-serif;
         font-weight: 400;
+        border: none;
     }
 
     html {
