@@ -44,7 +44,7 @@ ${({ seePassword }) =>
             }
 
             svg {
-              color: var(--fixit);
+              color: var(--info);
             }
           }
         `
@@ -60,7 +60,7 @@ ${({ seePassword }) =>
           align-items: center;
         `
       : css`
-          border: 2px solid var(--fixit);
+          border: 2px solid var(--info);
         `}
 
 
@@ -84,10 +84,10 @@ ${({ seePassword }) =>
     border-radius: 10px;
     padding: 10px 24px;
     font-size: 16px;
-    color: var(--dark-gray);
+    color: var(--gray-900);
 
     &::placeholder {
-      color: var(--light-gray);
+      color: var(--gray-200);
     }
   }
 
@@ -97,10 +97,10 @@ ${({ seePassword }) =>
     border-radius: 10px;
     padding-left: 24px;
     font-size: 16px;
-    color: var(--dark-gray);
+    color: var(--gray-900);
 
     &::placeholder {
-      color: var(--light-gray);
+      color: var(--gray-200);
     }
   }
 `;
@@ -130,7 +130,7 @@ export const Label = styled.span<InputContainerProps>`
       left: 0px;
       background: var(--white);
       padding: 0 6px;
-      color: ${readOnly ? "var(--dark-gray);" : "var(--fixit)"};
+      color: ${readOnly ? "var(--gray-900);" : "var(--info)"};
       transform: scale(0.75);
       transform-origin: left;
     `}

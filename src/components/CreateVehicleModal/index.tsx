@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "../Modal";
 import { Input } from "../Input";
 import { IFormData, ModalProps } from "./dtos";
 import { AbsoluteButton, FormContainer, InputContainer } from "./styles";
 import api from "../../services/server";
+import { showToast } from "../Toast";
 
-export function CreateVehicleModal ({open, closeModal}: ModalProps) {
+export function CreateVehicleModal ({open, editVehicle, closeModal, reload}: ModalProps) {
     const [data, setData] = useState<IFormData>({
       plate: '',
       chassis: '',
@@ -15,10 +16,21 @@ export function CreateVehicleModal ({open, closeModal}: ModalProps) {
       year: 0,
     });
 
-    console.log(data);
+    useEffect(() => {
+      if(editVehicle) {
+        setData({
+          ...data,
+          plate: editVehicle.plate,
+          chassis: editVehicle.chassis,
+          renavam: editVehicle.renavam,
+          model: editVehicle.model,
+          brand: editVehicle.brand,
+          year: editVehicle.year,
+        })
+      }
+    }, [editVehicle])
 
     async function createVehicle () {
-
       const body = {
         plate: data.plate,
         chassis: data.chassis,
@@ -30,6 +42,12 @@ export function CreateVehicleModal ({open, closeModal}: ModalProps) {
 
       try {
         const response = await api.post('/cars', body);
+        showToast({
+          type: 'success',
+          message: 'Veículo Cadastrado com Sucesso!'
+        })
+        closeModal();
+        reload();
         console.log(response);
       } catch (err) {
         console.log(err);

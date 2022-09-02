@@ -1,10 +1,24 @@
 import { AbsoluteButton, Container } from "./styles";
 import { RiAddFill } from 'react-icons/ri';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CreateVehicleModal } from "../CreateVehicleModal";
+import { IVehicle } from "../VehicleList/dtos";
 
-export function Header () {
+interface IHeader {
+    reload: () => void;
+    editVehicle?: IVehicle;
+    isEdit: boolean;
+    setIsEdit: (arg: boolean) => void;
+}
+
+export function Header ({ reload, editVehicle, isEdit, setIsEdit}: IHeader) {
     const [open, setOpen] = useState(false);
+
+    useEffect(() => {
+        if(isEdit && editVehicle) {
+            toggleModal()
+        }
+    }, [isEdit, editVehicle]);
     
     const toggleModal = () => {
         setOpen(!open);
@@ -14,7 +28,12 @@ export function Header () {
         <>
         <CreateVehicleModal 
             open={open}
-            closeModal={toggleModal} 
+            closeModal={() => {
+                toggleModal();
+                setIsEdit(false);
+            }}
+            reload={reload}
+            editVehicle={editVehicle}
         />
         <Container>
             <AbsoluteButton

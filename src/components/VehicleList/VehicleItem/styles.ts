@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     width: 100%;
-    height: 80px;
+    height: 100px;
 
     justify-content: space-around;
     display: flex;
@@ -13,19 +13,13 @@ export const Container = styled.div`
     border-radius: 15px;
     box-shadow: 3px 3px 3px var(--gray-200);
     background-color: white;
-    gap: 40px;
-
-    svg {
-        position: absolute;
-        left: 100px;
-        color: var(--info);
-    }
 `;
 
 export const ModelContainer = styled.div`
     width: 11rem;
-    height: 100%;
+    height: 60px;
 
+    gap: 10px;
     margin-left: 55px;
     display: flex;
     flex-direction: column;
@@ -37,16 +31,33 @@ export const ModelContainer = styled.div`
 
 export const GeneralContainer = styled.div`
     width: 11rem;
-    height: 100%;
+    height: 60px;
 
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 10px;
 
     font-size: 16px;
     font-weight: 400;
     color: var(--gray-900);
     align-items: center;
+    justify-content: start;
+`;
+
+export const IconsContainer = styled.div`
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
     justify-content: center;
+    gap: 30px;
+
+    svg {
+        color: var(--info);
+        cursor: pointer;
+    }
 `;
 
 export const MainText = styled.h1`
@@ -84,4 +95,29 @@ export const AbsoluteButton = styled.button`
     svg {
         color: var(--info);
     }
+`;
+
+export const Infos = styled.table`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    padding-left: 50px;
+    align-items: center;
+    justify-content: space-around;
+`
+
+export const TitleText = styled.h1`
+    font-size: 12px;
+    font-weight: 800;
+
+    color: var(--gray-600);
+`
+export const DataContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
 `;

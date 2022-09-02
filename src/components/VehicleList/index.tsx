@@ -1,44 +1,26 @@
-import { AbsoluteButton, Container, Infos, TitleText, Tr } from "./styles";
-import { RiAddFill } from 'react-icons/ri';
-import { VehicleItem } from "../VehicleItem";
+import { Container } from "./styles";
+import { VehicleItem } from "./VehicleItem";
 import { IVehicle } from "./dtos";
 
 interface IVehicleListProps {
     vehicles: IVehicle[];
+    reload: () => void;
+    setIsEdit: (arg: boolean) => void;
+    setEditVehicleId: (arg: string) => void;
 }
 
-export function VehicleList ({vehicles}: IVehicleListProps) {
-    return (
+export function VehicleList ({vehicles, reload, setIsEdit, setEditVehicleId}: IVehicleListProps) {
+
+    return (    
         <Container>
-            <Infos>
-                <TitleText>
-                    VEÍCULO
-                </TitleText>
-
-                <TitleText>
-                    MARCA
-                </TitleText>
-
-                <TitleText>
-                    PLACA
-                </TitleText>
-
-                <TitleText>
-                    CHASSI
-                </TitleText>
-
-                <TitleText>
-                    RENAVAM
-                </TitleText>
-
-                <TitleText>
-                    OPÇÕES
-                </TitleText>
-            </Infos>
             { vehicles.map((vehicle) => {
                 return (
                     <VehicleItem
+                        key={vehicle.id}
                         vehicle={vehicle}
+                        reload={reload}
+                        setIsEdit={setIsEdit}
+                        setEditVehicleId={setEditVehicleId}
                     /> 
                 )})
             }

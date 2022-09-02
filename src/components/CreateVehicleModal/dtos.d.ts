@@ -10,4 +10,6 @@ export interface IFormData {
 export interface ModalProps {
     open: boolean;
     closeModal: () => void;
+    reload: () => void;
+    editVehicle: IVehicle;
 }

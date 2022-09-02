@@ -1,4 +1,5 @@
 export interface IVehicle {
+    id: string;
     plate: string;
     chassis: string;
     renavam: string;
