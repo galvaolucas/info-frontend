@@ -1,4 +1,4 @@
-# B8 One FrontEnd
+# InfoSistemas FrontEnd
 
 ## Available Scripts
 
