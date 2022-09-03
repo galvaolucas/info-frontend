@@ -1,8 +1,5 @@
 import { Container } from "./styles";
-import { AiOutlineHeart, AiOutlineCheck } from 'react-icons/ai';
-import computer from '../src/assets/computer.png';
 import { useEffect, useState } from "react";
-import api from "./services/server";
 import { Header } from "./components/Header";
 import { VehicleList } from "./components/VehicleList";
 import { service } from "./services/service";

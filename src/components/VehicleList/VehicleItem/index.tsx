@@ -33,68 +33,68 @@ export function VehicleItem ({vehicle, reload, setIsEdit, setEditVehicleId}: IVe
 
     return (
         <Fragment>
-             <Container>
-            <IconsContainer>
-                <AiFillCar size={20}/>
-            </IconsContainer>
+            <Container>
+                <IconsContainer>
+                    <AiFillCar size={20}/>
+                </IconsContainer>
+                    
+                <ModelContainer>
+                    <TitleText>VEÍCULO</TitleText>
+                    <DataContainer>
+                        <MainText>
+                            {vehicle.brand}
+                        </MainText>
+                        <SecondaryText>
+                            {vehicle.year}
+                        </SecondaryText>
+                    </DataContainer>
+                </ModelContainer>
                 
-            <ModelContainer>
-                <TitleText>VEÍCULO</TitleText>
-                <DataContainer>
-                    <MainText>
-                        {vehicle.brand}
-                    </MainText>
-                    <SecondaryText>
-                        {vehicle.year}
-                    </SecondaryText>
-                </DataContainer>
-            </ModelContainer>
-            
-            <GeneralContainer>
-                <TitleText>MARCA/MODELO</TitleText>
-                <DataContainer>
-                    {vehicle.model}
-                </DataContainer>
-            </GeneralContainer>
+                <GeneralContainer>
+                    <TitleText>MARCA/MODELO</TitleText>
+                    <DataContainer>
+                        {vehicle.model}
+                    </DataContainer>
+                </GeneralContainer>
 
-            <GeneralContainer>
-                <TitleText>PLACA</TitleText>
+                <GeneralContainer>
+                    <TitleText>PLACA</TitleText>
+                    <DataContainer>
+                        {vehicle.plate}
+                    </DataContainer>
+                </GeneralContainer>
+
+                <GeneralContainer>
+                    <TitleText>Nº CHASSI</TitleText>
+                    <DataContainer>
+                        {vehicle.chassis}
+                    </DataContainer>
+                </GeneralContainer>
+
+                <GeneralContainer>
+                <TitleText>RENAVAM</TitleText>
                 <DataContainer>
-                    {vehicle.plate}
+                    {vehicle.renavam}
                 </DataContainer>
-            </GeneralContainer>
+                </GeneralContainer>
 
-            <GeneralContainer>
-                <TitleText>Nº CHASSI</TitleText>
-                <DataContainer>
-                    {vehicle.chassis}
-                </DataContainer>
-            </GeneralContainer>
-
-            <GeneralContainer>
-            <TitleText>RENAVAM</TitleText>
-            <DataContainer>
-                {vehicle.renavam}
-            </DataContainer>
-            </GeneralContainer>
-
-            <IconsContainer>
-                <BiEditAlt 
-                    size={20}
-                    onClick={() => {
-                       setIsEdit(true);
-                       setEditVehicleId(vehicle.id);
-                    }}
-                />
-                <BsTrash 
-                    size={20}
-                    onClick={async () => {
-                        deleteVehicle(vehicle.id);
-                    }}
-                />
-            </IconsContainer>
-        </Container>
-        <ToastContainer position="top-right" newestOnTop/>
+                <IconsContainer>
+                    <BiEditAlt 
+                        size={20}
+                        onClick={() => {
+                            setIsEdit(true);
+                            setEditVehicleId(vehicle.id);
+                        }}
+                    />
+                    <BsTrash 
+                        size={20}
+                        onClick={async () => {
+                            deleteVehicle(vehicle.id);
+                        }}
+                    />
+                </IconsContainer>
+            </Container>
+            <ToastContainer position="top-right" newestOnTop/>
         </Fragment>
 
        

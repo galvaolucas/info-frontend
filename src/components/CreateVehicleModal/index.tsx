@@ -7,7 +7,7 @@ import api from "../../services/server";
 import { showToast } from "../Toast";
 import { service } from "../../services/service";
 
-export function CreateVehicleModal ({open, editVehicle, closeModal, reload}: ModalProps) {
+export function CreateVehicleModal ({open, editVehicle, isEdit, closeModal, reload}: ModalProps) {
     const [data, setData] = useState<IFormData>({
       plate: '',
       chassis: '',
@@ -18,7 +18,7 @@ export function CreateVehicleModal ({open, editVehicle, closeModal, reload}: Mod
     });
 
     useEffect(() => {
-      if(editVehicle) {
+      if(editVehicle && isEdit) {
         setData({
           ...data,
           plate: editVehicle.plate,
@@ -29,7 +29,7 @@ export function CreateVehicleModal ({open, editVehicle, closeModal, reload}: Mod
           year: editVehicle.year,
         })
       }
-    }, [editVehicle]);
+    }, [editVehicle, isEdit]);
 
     function clearData() {
       setData({
@@ -47,6 +47,7 @@ export function CreateVehicleModal ({open, editVehicle, closeModal, reload}: Mod
       try {
         await service.updateVehicle(id, data);
         reload();
+        clearData();
         closeModal();
         showToast({
           type:'success',
@@ -74,6 +75,7 @@ export function CreateVehicleModal ({open, editVehicle, closeModal, reload}: Mod
           message: 'Veículo Cadastrado com Sucesso!'
         })
         closeModal();
+        clearData();
         reload();
       } catch (err) {
         console.log(err);
@@ -176,10 +178,10 @@ export function CreateVehicleModal ({open, editVehicle, closeModal, reload}: Mod
             
             <AbsoluteButton
               onClick={async () => {
-                editVehicle ? updateVehicle(editVehicle.id) : await createVehicle();
+                isEdit ? updateVehicle(editVehicle.id) : await createVehicle();
               }}
             >
-              { editVehicle ? 'Atualizar' : 'Cadastrar'}
+              { isEdit ? 'Atualizar' : 'Cadastrar'}
             </AbsoluteButton>
 
           </FormContainer>

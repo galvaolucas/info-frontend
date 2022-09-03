@@ -16,6 +16,7 @@ export function Header ({ reload, editVehicle, isEdit, setIsEdit}: IHeader) {
 
     useEffect(() => {
         if(isEdit && editVehicle) {
+            console.log(isEdit, editVehicle);
             setOpen(true);
         }
     }, [isEdit, editVehicle]);
@@ -34,6 +35,7 @@ export function Header ({ reload, editVehicle, isEdit, setIsEdit}: IHeader) {
             }}
             reload={reload}
             editVehicle={editVehicle}
+            isEdit={isEdit}
         />
         <Container>
             <AbsoluteButton

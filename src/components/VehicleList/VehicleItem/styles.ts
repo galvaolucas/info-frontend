@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import global from '../../../styles/responsive';
 
 export const Container = styled.div`
     width: 100%;
@@ -13,10 +14,19 @@ export const Container = styled.div`
     border-radius: 15px;
     box-shadow: 3px 3px 3px var(--gray-200);
     background-color: white;
+
+    @media(max-width: ${global.responsive.medium.width.value}${global.responsive
+    .medium.width.unit}) {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        width: calc(100vw - 55%);
+        height: 400px;
+    }
 `;
 
 export const ModelContainer = styled.div`
-    width: 11rem;
+    width: 13rem;
     height: 60px;
 
     gap: 10px;
@@ -27,6 +37,11 @@ export const ModelContainer = styled.div`
     color: var(--gray-900);
     align-items: center;
     justify-content: center;
+
+    @media(max-width: ${global.responsive.medium.width.value}${global.responsive
+    .medium.width.unit}) {
+        margin-left: 0px;
+    }
 `;
 
 export const GeneralContainer = styled.div`
@@ -53,10 +68,15 @@ export const IconsContainer = styled.div`
     align-items: center;
     justify-content: center;
     gap: 30px;
+    transition: 0.3s;
 
     svg {
         color: var(--info);
         cursor: pointer;
+
+        :hover {
+            transform: scale(1.2);
+        }
     }
 `;
 

@@ -12,4 +12,5 @@ export interface ModalProps {
     closeModal: () => void;
     reload: () => void;
     editVehicle: IVehicle;
+    isEdit: boolean;
 }
