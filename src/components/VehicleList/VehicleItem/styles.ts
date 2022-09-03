@@ -12,7 +12,7 @@ export const Container = styled.div`
     padding: 10px;
 
     border-radius: 15px;
-    box-shadow: 3px 3px 3px var(--gray-200);
+    box-shadow: 3px 3px 3px var(--gray-600);
     background-color: white;
 
     @media(max-width: ${global.responsive.medium.width.value}${global.responsive
