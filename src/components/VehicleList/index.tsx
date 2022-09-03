@@ -13,10 +13,10 @@ export function VehicleList ({vehicles, reload, setIsEdit, setEditVehicleId}: IV
 
     return (    
         <Container>
-            { vehicles.map((vehicle) => {
+            { vehicles.map((vehicle, index) => {
                 return (
                     <VehicleItem
-                        key={vehicle.id}
+                        key={index}
                         vehicle={vehicle}
                         reload={reload}
                         setIsEdit={setIsEdit}

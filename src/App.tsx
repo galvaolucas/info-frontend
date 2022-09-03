@@ -31,25 +31,16 @@ export function App() {
     if(editVehicleId) {
       getVehicle(editVehicleId);
     }
-  }, [edit])
-
-  const toggleEdit = () => {
-    setIsEdit(!edit);
-  };
+  }, [editVehicleId])
 
   async function getVehicle (id: string) {
     const edit = await service.getVehicle(id);
-    setIsEditVehicle(edit)
+    setIsEditVehicle(edit);
   }
 
-  async function getVehicles() {
-    try {
-      await api.get('/cars').then((response) => {
-        setVehicles(response.data);
-      })
-    } catch (err) {
-      console.log(err);
-    }
+  async function getVehicles () {
+    const cars = await service.getVehicles();
+    cars && setVehicles(cars);
   }
 
   return (

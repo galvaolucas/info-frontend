@@ -16,7 +16,7 @@ export function Header ({ reload, editVehicle, isEdit, setIsEdit}: IHeader) {
 
     useEffect(() => {
         if(isEdit && editVehicle) {
-            toggleModal()
+            setOpen(true);
         }
     }, [isEdit, editVehicle]);
     

@@ -5,6 +5,7 @@ import { IFormData, ModalProps } from "./dtos";
 import { AbsoluteButton, FormContainer, InputContainer } from "./styles";
 import api from "../../services/server";
 import { showToast } from "../Toast";
+import { service } from "../../services/service";
 
 export function CreateVehicleModal ({open, editVehicle, closeModal, reload}: ModalProps) {
     const [data, setData] = useState<IFormData>({
@@ -28,7 +29,33 @@ export function CreateVehicleModal ({open, editVehicle, closeModal, reload}: Mod
           year: editVehicle.year,
         })
       }
-    }, [editVehicle])
+    }, [editVehicle]);
+
+    function clearData() {
+      setData({
+        ...data,
+        plate: '',
+        chassis: '',
+        renavam: '',
+        model: '',
+        brand: '',
+        year: 0,
+      })
+    }
+
+    async function updateVehicle (id: string) {
+      try {
+        await service.updateVehicle(id, data);
+        reload();
+        closeModal();
+        showToast({
+          type:'success',
+          message:'Veículo Atualizado com Sucesso!',
+        })
+      } catch (err) {
+        console.log(err);
+      }
+    }
 
     async function createVehicle () {
       const body = {
@@ -41,14 +68,13 @@ export function CreateVehicleModal ({open, editVehicle, closeModal, reload}: Mod
       }
 
       try {
-        const response = await api.post('/cars', body);
+        await api.post('/cars', body);
         showToast({
           type: 'success',
           message: 'Veículo Cadastrado com Sucesso!'
         })
         closeModal();
         reload();
-        console.log(response);
       } catch (err) {
         console.log(err);
       }
@@ -57,7 +83,10 @@ export function CreateVehicleModal ({open, editVehicle, closeModal, reload}: Mod
     return (
         <Modal 
             open={open}
-            onRequestClose={closeModal}
+            onRequestClose={() => { 
+              closeModal();
+              clearData();
+            }}
         >
           <FormContainer>
             <span className='title'>Cadastrar Veículo</span>
@@ -142,15 +171,15 @@ export function CreateVehicleModal ({open, editVehicle, closeModal, reload}: Mod
                     chassis: event,
                   }))
                 }
-              />
+              />  
             </InputContainer>
             
             <AbsoluteButton
               onClick={async () => {
-                await createVehicle();
+                editVehicle ? updateVehicle(editVehicle.id) : await createVehicle();
               }}
             >
-              Cadastrar
+              { editVehicle ? 'Atualizar' : 'Cadastrar'}
             </AbsoluteButton>
 
           </FormContainer>

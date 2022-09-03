@@ -5,7 +5,7 @@ import { BsTrash } from 'react-icons/bs';
 import { IVehicle } from "../dtos";
 import { service } from "../../../services/service";
 import { showToast } from "../../Toast";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { Fragment} from 'react';
 
 interface IVehicleItemProps {
